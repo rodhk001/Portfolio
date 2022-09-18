@@ -1,0 +1,67 @@
+---
+title: "High School Performance Project R Code"
+author: "Kiana Gonzalez-Rodholm"
+date: March 3rd 2022
+output:
+  word_document: default
+---
+
+# R Code
+
+## Import and Clean Data
+
+```{r}
+# import libraries
+library(ggplot2)
+library(scales)
+
+# read in data to data frame
+mat_df <- read.csv("student-mat.csv")
+por_df <- read.csv("student-por.csv")
+head(mat_df)
+head(por_df)
+
+```
+```{r}
+# make an average grade column for each class
+mat_df$Grades <- c((mat_df$G1 + mat_df$G2 + mat_df$G3)/3)
+por_df$Grades <- c((por_df$G1 + por_df$G2 + por_df$G3)/3)
+
+```
+
+
+## Plots
+
+
+```{r}
+
+# Grades by workday alcohol consumption
+ggplot(data=por_df, aes(x=Dalc)) + geom_point(aes(y=Grades),color='blue') + 
+  geom_point(data=mat_df, aes(y=Grades), color='red') +
+  xlab('Workday Alcohol Consumption') + ylab('Average Grades') + 
+  ggtitle('Grades by Workday Alcohol Consumption')
+
+
+# Grades by weekend alcohol consumption
+ggplot(data=por_df, aes(x=Walc)) + geom_point(aes(y=Grades),color='blue') + 
+  geom_point(data=mat_df, aes(y=Grades), color='red') +
+  xlab('Weekend Alcohol Consumption') + ylab('Average Grades') + 
+  ggtitle('Grades by Weekend Alcohol Consumption')
+
+# Grades by past failed classes
+ggplot(data=por_df, aes(x=failures)) + geom_point(aes(y=Grades),color='blue') + 
+  geom_point(data=mat_df, aes(y=Grades), color='red') +
+  xlab('Previous Failed Classes') + ylab('Average Grades') + 
+  ggtitle('Grades by Past Failures')
+
+# Grades by absences
+ggplot(data=por_df, aes(x=absences)) + geom_point(aes(y=Grades),color='blue') + 
+  geom_point(data=mat_df, aes(y=Grades), color='red') +
+  xlab('Absences') + ylab('Average Grades') + 
+  ggtitle('Grades by Number of Absences')
+```
+
+
+## References
+
+https://www.tutorialspoint.com/r/r_data_frames.htm 
