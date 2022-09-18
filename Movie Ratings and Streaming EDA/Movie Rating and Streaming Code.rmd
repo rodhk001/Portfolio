@@ -1,0 +1,349 @@
+---
+title: "Movie Ratings and Streaming EDA"
+author: "Kiana Gonzalez-Rodholm"
+date: March 4th 2021
+output:
+  word_document: default
+---
+
+```{r, include=FALSE}
+disney_df <- read.csv("/Users/krodh/OneDrive/Documents/DSC 520/Final Project/DisneyMoviesDataset.csv")
+imdb_df <- read.csv("/Users/krodh/OneDrive/Documents/DSC 520/Final Project/imdb_data.csv")
+streaming_df <- read.csv("/Users/krodh/OneDrive/Documents/DSC 520/Final Project/MoviesOnStreamingPlatforms.csv")
+```
+
+# Movie Rating Analysis
+
+## Section 1
+
+### Introduction
+
+As someone who has always enjoyed film and going to the movies, I thought it would be interesting to analyze the film industry. My husband is an actor, and before the pandemic we would go to see a movie at least once a week, and would always check the ratings of a film before deciding which one to see. I also have a special connection to Disney films in particular, as I have been a Cast Member for over 8 years, and have always loved Disney movies. I am curious to see how Disney movies compare to other films in the industry as far as success and ratings.  I not only want to look at the trend between ratings but between genres and even different directors to potentially predict what makes a “good” movie and whether or not Disney is a contributor to those movies.
+
+### Research Questions
+
+* Does Disney hold a majority of highly rated movies?
+* How do Disney movies compare to other production companies as far as ratings and earnings?
+* Do different genres tend to better in ratings than others?
+* Does the director of the film tend to sway the data towards a good or bad rating?
+* Which streaming service offers the most popular movies?
+* Which streaming service offers the least popular movies?
+* Do IMDb and Rotten Tomatoes tend to rate movies about the same?
+* Do foreign films tend to have higher or lower ratings?
+
+### Approach
+
+In order to address these questions, I intend to use plots, statistical analysis, and predictive modeling to analyze different elements of the data depending on the variables being observed in each question. 
+
+# How the Approach Addresses the Problem
+
+By analyzing the different types of ratings on the various films, I believe this may give a partial conclusion to what makes a “good” movie and be able to compare the difference between Disney films and other production companies. This is only going to determine the opinions of those who have rated movies on IMDb or Rotten Tomatoes, so it may not represent the opinions of the population as a whole.  This is also not a complete sample of all movies, but is large enough to hopefully get a general idea of the hypothesis. 
+
+### Data
+
+All three data sets were found on Kaggle and can be accessed at the following links:
+
+[Streaming Data](https://www.kaggle.com/ruchi798/movies-on-netflix-prime-video-hulu-and-disney)
+
+[IMDb Data](https://www.kaggle.com/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows)
+
+[Disney Data](https://www.kaggle.com/therealsampat/disney-movies-dataset)
+
+The data sets have the following details:
+
+* This data set was posted on the platform to use it as a search engine to find out which movies are on what streaming platform and which movies tend to house older films or films for various age groups. The data was last updated on 5/22/2020. The original variables include title of the film; year it was released; age group; IMDb rating; Rotten Tomatoes rating (as a percentage); columns for Hulu, Netflix, Prime Video, and Disney+; directors; genres; country and language; and the runtime of the film. With just a quick review of the data, it does look like there is some missing values for the Rotten Tomatoes ratings, so some only have an IMDb rating.
+* This data was given in the intention to analyze IMDb data specifically, and has a lot of the same variables as above, minus the streaming services and Rotten Tomatoes ratings. This data also includes different actors who star in each film. This was last updated 1/31/2021 and also has a lot of missing values for gross earnings.
+* The third data set was given in the intention to try and predict IMDb ratings for future Disney movies. This set also has the same variables as the other two sets, but also include more than just the director but screenplay, editor, narration, cinematography, etc. These values are sporadic throughout the document however and would not be very useful for this particular project. This was last updated 1/14/2021 and has a couple of special characters in the data that will need to be removed.
+
+### Required Packages
+
+Packages required for this project include (and are not limited to) ggplot2, class, car, and scales. 
+
+### Plots and Table Needs
+
+I intend to use various plots in order to analyze the data including scatterplots and line graphs to see trends in prediction models, scatterplots with clustering, histograms to view normalcy, and box plots or pie charts in order to compare the various categorical variables. 
+
+### Questions for Future Steps
+
+While I feel confident in plotting the data and applying the techniques learned throughout the course this term, my room for growth will be to figure out how to have a clean data set free of biased. I want to make sure my data isn’t skewed or inaccurate as much as possible. I also want to make sure that I use the most appropriate techniques, so making sure I understand which ones to use in this particular instance will require a bit more research for me. 
+
+## Section 2
+
+### How to Import and Clean my Data
+
+I checked for duplicate entries (not including movies which had been remade with the same name), made formatting for ratings the same across data sets (percentages are now all displayed as decimals), renamed variables to be consistent across data sets, made all blanks the same (some said N/A), and made the release date variable consistent across data sets so all are displaying the year only.
+
+### Final Data Set
+
+I decided to keep the three data sets separate for now since they all have unique attributes that I want to analyze separately, for example the Disney data set is unique to just Disney movies, the IMDb set has only IMDb info, and the streaming services set has the unique information regarding what streaming platform the movie is on. I will eventually pull specific columns of data together to analyze similarities across the three sets such as ratings and year of release, and directors (removing any overlap). These are all common to the three sets. Here are some snapshots of what the data looks like right now:
+
+#### Disney Data
+
+![](/Users/krodh/OneDrive/Documents/DSC 520/Final Project/Disney Movie data.png)
+
+#### IMDb Data
+
+![](/Users/krodh/OneDrive/Documents/DSC 520/Final Project/imdb data.png)
+
+#### Streaming Data
+
+![](/Users/krodh/OneDrive/Documents/DSC 520/Final Project/Streaming platform data.png)
+
+### Questions for Future Steps
+
+One thing I do not know how to do is to remove unnecessary info or special characters within variables without going in and removing them manually, as they are all unique. For example, some director names have special characters and some have further detail such as assistant director which will need to be removed so there is only a list of names. 
+
+### Information that is not Self-evident
+
+I am curious to see how the movies that have multiple directors may impact the data, for if I decide to just go with the first name on the list, the results may be biased. I am not sure how the use of multiple names will affect the results. I plan to pool together all the names and see which names appear the most and analyze perhaps the top 20-30 directors, as a plot with every single name may be too cluttered. I also plan to compare the directors to the ratings of the films, for quantity of movies directed doesn’t necessarily mean they were well received. 
+
+### Different Ways to Look at the Data
+
+By analyzing different variables at a time one can answer the more specific questions. For example, in order to compare the streaming services, I will look at the streaming data for platform, title, and ratings. For the question regarding IMDB vs Rotten Tomatoes, I will compare those two variables. In order to look closer at the Disney data, I plan to compare that data set within itself and with other titles. 
+
+### Slice and Dice the Data
+
+As mentioned above, I plan to combine some of the variables that all data sets have in common into one data set in order to create a new data frame and get a new summary of the information. If there are any titles that overlap between data sets, those will be removed as to not be repeated twice. 
+
+### Summarize Data to Answer Key Quesions
+
+The majority of the summaries will be displayed by using plots, but I also plan to use the summary function and other functions such as cov (for covariance) and cor (for correlation) to see additional information about the variables. 
+
+### Types of Plots to Illustrate Findings
+
+I will use a variety of plots such as scatterplots to show the overall data, pie charts to show the distribution of movies to streaming services, and regression plots to see how the data relates to my regression model. 
+
+### Questions for Future Steps
+
+One thing I don’t know how to do that I still need to learn is how to get the streaming service data to display properly in R. They are currently labeled with 0’s and 1’s, but I am not sure if I need to manipulate that data into logical variables.
+
+## Section 3
+
+### Introduction
+
+The film industry is so vast, ranging so many different genres, artists, and countries around the world, and because of that you have a very subjective and diverse industry. Through data analysis and mapping, one can ask a lot of questions regrading what makes a “good” film. With various platforms to stream and rate films, many results arise. I decided to look at ratings and other attributes of various films and Disney films in particular. As someone who has always been a huge Disney fan (and a Disney Cast Member), I wanted to see how Disney stood up to the other companies and films. Through my analysis I have found that what makes a good film is not as simple as it may seem. 
+
+### Problem Statement
+
+I wanted to discover multiple elements of the film industry, in order to see what types of films are more successful, and in hopes to find that Disney is one of the higher ranked production companies. I used IMDb and Rotten Tomatoes ratings as a guideline to gauge what makes a movie a success. 
+
+### How I Addressed the Problem Statement
+
+I decided to address this statement by asking some of the following questions:
+
+* Does Disney hold a majority of highly rated movies?
+* How do Disney movies compare to other production companies as far as ratings and earnings?
+*	Do different genres tend to better in ratings than others?
+*	Does the director of the film tend to sway the data towards a good or bad rating?
+*	Which streaming service offers the most popular movies?
+*	Which streaming service offers the least popular movies?
+*	Do IMDb and Rotten Tomatoes tend to rate movies about the same?
+*	Do foreign films tend to have higher or lower ratings?
+
+I used three different data sets, one which includes all Disney movies to date, another which has over 16,000 movies found on various streaming platforms, and 1000 entries found on the IMDb site. I figured by mapping the data first I would begin to see some trends in the data to see if my questions were worth looking further into with more analysis. Below is a summary of the three data sets; note that some of the variables were not used in this analysis and were hidden from view in my document.
+
+```{r}
+summary(streaming_df)
+summary(disney_df)
+summary(imdb_df)
+
+```
+
+### Analysis
+
+Through my analysis I have discovered multiple interesting incites. One of the major findings was that a lot of my questions resulted in the same answer: the result is random and varies by film. Because this industry is so subjective and so diverse, a lot of the data seemed to be random and did not form a conclusion. For example, when looking at IMDb Ratings vs Rotten Tomatoes Ratings by year, we can see that especially with the IMDb ratings, the ratings are vastly spread across the data, and although the earlier films tend to rate slightly higher with Rotten Tomatoes, those are also fairly spread out. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(scales)
+
+
+# imdb data by year
+ggplot(streaming_df, aes(x=release_date, y=imdb)) + geom_point() + geom_smooth() + xlab("Release Year") + ylab("IMDB Rating (1-10)") + ggtitle("IMDb Ratings by Year")
+
+#rotten tomatoes data by year
+ggplot(streaming_df, aes(x=release_date, y = rotten_tomatoes)) + geom_point() + geom_smooth() + xlab("Release Year") + ylab("Rotten Tomatoes Rating (decimal percentage)") + ggtitle("Rotten Tomatoes Ratings by Year")
+
+```
+
+When looking at Ratings versus earnings, one would assume that the higher the film was rated, the more it would earn in the box office. We can see from the graph below that that is not the case. In fact, all films tended to earn a lower amount and there were only a handful of outliers that did well. I will mention however that this does not take inflation into account and could be skewed. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# imdb data vs box office earnings
+ggplot(imdb_df, aes(x=box_office, y=imdb)) + geom_point() + scale_x_continuous(labels = dollar) + xlab("Box Office Earnings (dollars)") + ylab("IMDb Rating") + ggtitle("IMDb Movie Ratings vs Box office Earnings")
+
+```
+
+One thing I did discover and played in my favor was looking at the Disney movie ratings and earnings. Compared to the previous plot, Disney movies overall tend to be rated higher, in the 5-8 out of 10 range. And there also seem to be quite a bit of highly grossed films. Looking at the x-axis of both graphs above and below, we can see the scales of the Disney earnings are significantly higher and thus those films have earned more. Rotten Tomatoes doesn’t seem to rate Disney movies as highly as IMDb; however the earnings still reflect the same results. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Disney data imdb ratings vs box office earnings
+ggplot(disney_df, aes(x=box_office, y=imdb)) + geom_point() + scale_x_continuous(labels = dollar) + xlab("Box Office Earnings (dollars)") + ylab("IMDb Rating") + ggtitle("Disney Movie IMDb Ratings vs Box office Earnings")
+
+# Disney data rotten tomatoes ratings vs box office earnings
+ggplot(disney_df, aes(x=box_office, y=rotten_tomatoes)) + geom_point() + scale_x_continuous(labels = dollar) + xlab("Box Office Earnings (dollars)") + ylab("Rotten Tomatoes Rating") + ggtitle("Disney Movie Rotten Tomatoes Ratings vs Box office Earnings")
+
+```
+
+Another question asked was whether or not foreign films tend to rate higher than US films. Looking at the plot below, we see only the films not from the US, but it appears the ratings have a near identical result to the overall ratings including US films, and once again proves the randomicity of the film industry. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+foreign_df <- streaming_df[which(streaming_df$country != "United States"), ]
+# imdb data by year on non-US films
+ggplot(foreign_df, aes(x=release_date, y = imdb)) + geom_point() + geom_smooth() + xlab("Release Year") + ylab("IMDb Rating(1-10)") + ggtitle("IMDb Ratings by Year on Foreign Films")
+
+```
+
+Then I went on to look more closely at the various streaming services provided, including Netflix, Amazon Prime Video, Hulu, and Disney+. Just looking at the sheer volume of movies in their repertoire, we can see that Prime takes the cake on holding the most films on its platform, with Netflix holding a smaller piece and Hulu and Disney+ trailing behind. This could be due to the fact that Disney+ is still a fairly new platform, and also has an overall smaller market. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# creating a pie chart with the total number of movies in each streaming platform
+new_df <- data.frame(platform = c("Netflix - 3560", "Hulu - 903", "Prime - 12354", "Disney - 564"), total_movies = c(3560, 903, 12354, 564))
+pie(new_df$total_movies, labels=new_df$platform, col=rainbow(length(new_df$platform)), main = "Pie Chart of Total Movies on Each Platform")
+```
+
+Looking at which streaming service tends to rate higher or lower, I decided to use a histogram to show the volume of films along side the ratings for each streaming service. As we can see they all seem to have a normal distribution, which lend to the vastly spread rating results from before. It also appears that all streaming platforms have almost exactly the same distribution of ratings. Which lends me to believe that all streaming platforms hold a wide array of content. In the graph below the dark blue represents Prime, red is Netflix, green is Hulu, and light blue is Disney+. I tried to emulate the color of their logos/design, but that has nothing to do with the analysis and just me having fun with it. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+netflix_df <- streaming_df[which(streaming_df$netflix == 1), ]
+hulu_df <- streaming_df[which(streaming_df$hulu == 1), ]
+prime_df <- streaming_df[which(streaming_df$prime == 1), ]
+disney_df <- streaming_df[which(streaming_df$disney == 1), ]
+
+
+# Prime dark blue, netflix red, hulu green, light blue Disney
+ggplot(data=prime_df, aes(x=imdb)) + geom_histogram(color="blue", fill="steelblue") + 
+  geom_histogram(data=netflix_df, color="darkred", fill="darksalmon") +
+  geom_histogram(data=hulu_df, color= "green4", fill="palegreen") +
+  geom_histogram(data=disney_df,color="skyblue4", fill="skyblue") +
+  xlab("IMDB Rating (1-10)") + ylab("Count") + ggtitle("Streaming Services IMDB Ratings")
+
+```
+
+I then went on to look at the ratings versus the director, to see if the director had any affect in the rating or success of the film. I first created a new data frame counting the number of films each director had since there are so many individuals per film, and decided to pull those top ten directors who have directed the most films in order to analyze the largest set of films. I did this for the streaming data and the Disney data. I then resulted in the following two data frames:
+
+```{r, echo=FALSE}
+# finds the top 10 directors which have made the most movies out of the data set
+streaming_directors <- table(streaming_df$director)
+sdf<- as.data.frame(streaming_directors)
+sd_df <- sdf[which(sdf$Freq > 17), ]
+sd_df2 <- sd_df[-c(1), ]
+names(sd_df2) = c("director", "count")
+sd_df2
+
+# finds the top 10 Disney movie directors which have made the most movies 
+disney_directors <- table(disney_df$director)
+ddf<- as.data.frame(disney_directors)
+dd_df <- ddf[which(ddf$Freq > 4), ]
+dd_df2 <- dd_df[-c(1), ]
+names(dd_df2) = c("director", "count")
+dd_df2
+
+```
+
+From there I made individual data frames for each director in order to gather data on the films they specifically directed. Then I stacked various line plots to create the following two plots; one for the streaming directors and one for the Disney directors. As you can see from both plots, the director does seem to have their own individual average of ratings, and they all seem to be individually successful (or not). Therefore it appears that the director of the film does have an impact on the success of the film, however there is no general trend in which director will be more successful. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+# gets the info of each of the top directors
+sd1_df <- streaming_df[which(streaming_df$director == "Cheh Chang"), ]
+sd2_df <- streaming_df[which(streaming_df$director == "David DeCoteau"), ]
+sd3_df <- streaming_df[which(streaming_df$director == "Jay Chapman"), ]
+sd4_df <- streaming_df[which(streaming_df$director == "Jay Karas"), ]
+sd5_df <- streaming_df[which(streaming_df$director == "Jim Wynorski"), ]
+sd6_df <- streaming_df[which(streaming_df$director == "Joseph Kane"), ]
+sd7_df <- streaming_df[which(streaming_df$director == "Marcus Raboy"), ]
+sd8_df <- streaming_df[which(streaming_df$director == "Raul Campos,Juan Suter"), ]
+sd9_df <- streaming_df[which(streaming_df$director == "Sam Newfield"), ]
+sd10_df <- streaming_df[which(streaming_df$director == "William Beaudine"), ]
+
+# plot of all top director data from streaming data
+ggplot(data=sd1_df, aes(x=imdb)) +
+  geom_line(aes(y = director), color = "darkred") +
+  geom_line(data=sd2_df, aes(y = director), color= "darkgreen") +
+  geom_line(data=sd3_df, aes(y = director), color= "steelblue") +
+  geom_line(data=sd4_df, aes(y = director), color= "yellow") +
+  geom_line(data=sd5_df, aes(y = director), color= "violetred") +
+  geom_line(data=sd6_df, aes(y = director), color= "springgreen") +
+  geom_line(data=sd7_df, aes(y = director), color= "black") +
+  geom_line(data=sd8_df, aes(y = director), color= "gray60") +
+  geom_line(data=sd9_df, aes(y = director), color= "brown") +
+  geom_line(data=sd10_df, aes(y = director), color= "hotpink") +
+  xlab("IMDB Ratings (1-10)") + ylab("Top 10 Directors") + ggtitle("Ratings for Top 10 Directors")
+
+# gets the info of each of the top directors
+dd1_df <- streaming_df[which(streaming_df$director == "Duwayne Dunham"), ]
+dd2_df <- streaming_df[which(streaming_df$director == "Greg Beeman"), ]
+dd3_df <- streaming_df[which(streaming_df$director == "James Algar"), ]
+dd4_df <- streaming_df[which(streaming_df$director == "Kenny Ortega"), ]
+dd5_df <- streaming_df[which(streaming_df$director == "Norman Tokar"), ]
+dd6_df <- streaming_df[which(streaming_df$director == "Paul Hoen"), ]
+dd7_df <- streaming_df[which(streaming_df$director == "Robert Stevenson"), ]
+dd8_df <- streaming_df[which(streaming_df$director == "Steve Boyum"), ]
+dd9_df <- streaming_df[which(streaming_df$director == "Stewart Gillard"), ]
+dd10_df <- streaming_df[which(streaming_df$director == "Vincent McEveety"), ]
+
+# plot of all top director data from Disney data
+ggplot(data=dd1_df, aes(x=imdb)) +
+  geom_line(aes(y = director), color = "darkred") +
+  geom_line(data=dd2_df, aes(y = director), color= "darkgreen") +
+  geom_line(data=dd3_df, aes(y = director), color= "steelblue") +
+  geom_line(data=dd4_df, aes(y = director), color= "yellow") +
+  geom_line(data=dd5_df, aes(y = director), color= "violetred") +
+  geom_line(data=dd6_df, aes(y = director), color= "springgreen") +
+  geom_line(data=dd7_df, aes(y = director), color= "black") +
+  geom_line(data=dd8_df, aes(y = director), color= "gray60") +
+  geom_line(data=dd9_df, aes(y = director), color= "brown") +
+  geom_line(data=dd10_df, aes(y = director), color= "hotpink") +
+  xlab("IMDB Ratings (1-10)") + ylab("Top 10 Directors") + ggtitle("Ratings for Top 10 Disney Directors")
+
+```
+
+Lastly, I wanted to cover as many bases as I could and take a look at how genre could affect the success of the film. I pulled some of the more common genres out of the batch: action, comedy, drama, family, horror, and romance. I made data frames containing films from each genre from the streaming data, and stacked each one into a scatterplot. As you can see from the results below, the genre does not seem to have an overall affect on the ratings. Although family and romance tend to get slightly higher ratings, I don’t believe it is enough to explore further. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# ratings by genre
+action_df <- streaming_df[which(streaming_df$genre == "Action"), ]
+comedy_df <- streaming_df[which(streaming_df$genre == "Comedy"), ]
+drama_df <- streaming_df[which(streaming_df$genre == "Drama"), ]
+romance_df <- streaming_df[which(streaming_df$genre == "Romance"), ]
+horror_df <- streaming_df[which(streaming_df$genre == "Horror"), ]
+family_df <- streaming_df[which(streaming_df$genre == "Family"), ]
+
+# plot showing ratings per genre
+ggplot(data=action_df, aes(x=genre)) + geom_point(aes(y=imdb), color="darkorange") +
+  geom_point(data=comedy_df, aes(y=imdb), color="darkgreen") +
+  geom_point(data=drama_df, aes(y=imdb), color="steelblue") +
+  geom_point(data=romance_df, aes(y=imdb), color="darkred") +
+  geom_point(data=horror_df, aes(y=imdb), color="black") +
+  geom_point(data=family_df, aes(y=imdb), color="magenta") +
+  xlab("Genre") + ylab("IMDb Rating (1-10)") + ggtitle("IMDb Ratings Per Genre")
+```
+
+### Implications
+
+There aren’t too many implications to the consumer from this analysis, due to the fact that a lot of the results seemed to be widespread. This means that those who are looking to find a good movie may not necessarily need to rely on ratings or box office earnings, and can just go and see films that they are particularly interested in. My husband was always one to check the ratings of a film before going to see it. It wasn’t until we got a monthly subscription and started going more regularly, that we found that some of the movies that weren’t rated as high were still enjoyable, and sometimes even more enjoyable in our opinion then the highly rated films. I think that is the beauty of the industry, it’s that everything is so unique, and they have films that cater to every audience. 
+
+### Limitations
+
+There were definitely some limitations to this analysis, in that because the plots all looked so random, I decided to not dive too much further into prediction modeling and machine learning as planned. I figured that because the data was not normal and there was no clear pattern to support any hypotheses either way, that it would not be beneficial to pursue further. I do wish I were able to spend more time analyzing more directors than just those with the most films. I think if there were a better way to narrow them down we could have gotten more conclusive results, but with so many unique categorical variables it became very difficult. 
+
+I think if I had more time there could be even more variables to explore such as how much the budget was versus how much the movie earned to see if there was significant win or loss. We could also look at the language the film is spoken in to see if that has any affect on its viewership or success. There are so many things to consider and so many elements to look at with film that I wish I was able to dive deeper. 
+
+### Concluding Remarks
+
+Overall, even though I did not get the results or as many conclusions from the data as I had initially hoped for, I still thoroughly enjoyed this project and looking at the various aspects of film and how they all correlate. I was also excited to see how the Disney films played into the overall population and was delighted to see some of the more positive results. Although I wish I could have kept exploring this industry I am pleased to find it is as unique as all of us and that each film has its own personal story and journey. Now to the movies!!
+
+## References
+
+[ggplot2 Color Refrence Guide](http://sape.inf.usi.ch/quick-reference/ggplot2/colour)
+
+[Pie Charts](https://www.statmethods.net/graphs/pie.html)
+
+[Changing Axis Scales](http://www.sthda.com/english/wiki/ggplot2-axis-scales-and-transformations#format-axis-tick-mark-labels-1)
+
+[Data Cleaning Techniques](https://www.digitalvidya.com/blog/data-cleaning-techniques/#:~:text=Data%20cleansing%20or%20data%20cleaning,the%20dirty%20or%20crude%20data.)
+
+[R Markdown Refrence Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+
+[ggplot2 Essentials](http://www.sthda.com/english/wiki/ggplot2-essentials)
