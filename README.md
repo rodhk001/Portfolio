@@ -2,7 +2,7 @@
 By Kiana Gonzalez-Rodholm
 
 ## About
-A recent graduate of Bellevue University's Data Science Graduate progam, I am eager to show you what I have leanred and what I am capable of. Here you will find a collection of some of my favorite data science projects.
+A recent graduate of Bellevue University's Data Science Graduate progam, I am eager to show you what I have learned and what I am capable of. Here you will find a collection of some of my favorite data science projects.
 
 ## Projects
 1. Video Game EDA  
