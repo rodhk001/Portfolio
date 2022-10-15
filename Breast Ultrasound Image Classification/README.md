@@ -1,5 +1,5 @@
-# Breat Ultrasound Image Classification
-## BY Kiana Gonzalez-Rodholm
+# Breast Ultrasound Image Classification
+## By Kiana Gonzalez-Rodholm
 ### Project Summary
 This project will use image classification on normal, benign, and malignant breast ultrasound images to build a model that can detect whether a specific specimen contains cancer or not. The business problem would be that there needs to be a way to detect whether a person has breast cancer quickly and in an automated way to test for cancer based off someone’s ultrasound images. This could therefore speed up the process of diagnosing patients and getting them the treatment they need. Some research questions to potentially answer include the following: With what accuracy and speed can we determine if an ultrasound image contains cancerous masses. What would be the impact if an image is misclassified? What is it that determines whether an image has cancerous masses? 
 
