@@ -7,6 +7,7 @@ output:
 ---
 
 ```{r, include=FALSE}
+# edit as necessary to local path
 disney_df <- read.csv("/Users/krodh/OneDrive/Documents/DSC 520/Final Project/DisneyMoviesDataset.csv")
 imdb_df <- read.csv("/Users/krodh/OneDrive/Documents/DSC 520/Final Project/imdb_data.csv")
 streaming_df <- read.csv("/Users/krodh/OneDrive/Documents/DSC 520/Final Project/MoviesOnStreamingPlatforms.csv")
