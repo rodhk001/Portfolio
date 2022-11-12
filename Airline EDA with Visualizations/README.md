@@ -9,4 +9,4 @@ The basis for this project was the assumption that the media was stating that ai
 ### Future Application
 One could further the audience reach by working with the marketing team to get adds out showing the importance of the message based off of the data and results collected here. Marketing could then use the information to release adds/inforgraphics on various platforms such as websites, social media, newpapers/articles, etc. 
 
-**Note:** The informative video file was too large to be placed in this repository, but can be found at this link: ____.
+**Note:** The informative video file was too large to be placed in this repository, but can be found at this link: [Link to Video](https://drive.google.com/file/d/176vAZsw33ViSwum-XAQrFgVBQsTXqY69/view?usp=share_link).  
