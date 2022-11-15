@@ -43,4 +43,4 @@ This project is a simple but effective application that demonstrates Python codi
 ## Contact
 **Email:** kianarodholm@yahoo.com  
 **Phone:** XXX-XXX-XXXX  
-**LinkedIn:** [Link to another page](./another-page.html).  
+**LinkedIn:** [Link to Profile](www.linkedin.com/in/kiana-gonzalez-rodholm-4b1158257).  
