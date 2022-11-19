@@ -4,15 +4,24 @@ layout: default
 ---
 
 # About
-> A recent graduate of Bellevue University's Data Science Graduate progam, I am eager to show you what I have learned and what I am capable of. Here you will find a collection of some of my favorite data science projects with a link to the repository where you will find all the code, data, and results of each analysis.
-> Coming from a mathematics background, I have always been interested in problem solving and helping others. With my new found knowledge in Data Science, I hope to use my skills to collaborate, find solutions, and succeed in meeting the business objective. 
+> A recent graduate of Bellevue University's Data Science Graduate progam, I am eager to show you what I have learned and what I am capable of. Here you will find a collection of some of my favorite data science projects with a link to the repository where you will find all the code, data, and results of each analysis. Coming from a mathematics background, I have always been interested in problem solving and helping others. With my new found knowledge in Data Science, I hope to use my skills to collaborate, find solutions, and succeed in meeting the business objective. 
 
-### Qualifications
+### Experience
+* Bachelors in Mathematics from Cal State University Fullerton.
+* Masters in Data Science from Bellevue University.
+* Over 10 years of service for the Walt Disney Company.
+* Four years in documentation and training management. 
+* System Support ecpert in current training and documenation digital platform.
+* Leader of attractions operations and trainer of employees.
+
+### Skills
 * Proficient in Python and R programming languages. 
 * Proficient in Tableau.
-* Excellent skills in Excel, Word, and PowerPoint.
+* Excellent skills in Excel, Word, PowerPoint, and other Microsoft Office applications.
 * Currently using Monday.com, Teams, and Outlook for project management, analytics, and communication.
 * Multiple years in managing, creating, and sustaining content while also supporting operations and training at current postion.
+
+* * *
 
 # Projects
 
