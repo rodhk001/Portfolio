@@ -3,7 +3,7 @@ title: Portfolio
 layout: default
 ---
 
-# About
+# About Me
 > A recent graduate of Bellevue University's Data Science Graduate progam, I am eager to show you what I have learned and what I am capable of. Here you will find a collection of some of my favorite data science projects with a link to the repository where you will find all the code, data, and results of each analysis. Coming from a mathematics background, I have always been interested in problem solving and helping others. With my new found knowledge in Data Science, I hope to use my skills to collaborate, find solutions, and succeed in meeting the business objective. 
 
 ### Experience
@@ -57,5 +57,5 @@ This project is a simple but effective application that demonstrates Python codi
 
 * * *
 
-## Contact
+## Contact Me
 **LinkedIn:** [Link to Profile](https://www.linkedin.com/in/kiana-gonzalez-rodholm-4b1158257/).  
